@@ -1,0 +1,27 @@
+<div id="container">
+
+  <span id="title">{{ isEdition ? 'Edition' : 'Ajout' }} couleur</span>
+
+  <app-listing-navigation></app-listing-navigation>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="input">
+
+      <div class="control">
+        <input class="form-input" id="name" formControlName="name" type="text">
+      </div>
+
+      <div class="error">
+        <div *ngIf="form.controls.name.touched && form.controls.name.invalid" class="alert">
+          <div *ngIf="form.controls.name.errors?.required">Veuillez choisir une couleur.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="submit">
+      <button type="submit">Valider</button>
+      <p *ngIf="displayMessage" id="message">La couleur a été {{ isEdition ? 'modifiée' : 'ajoutée' }} avec succès !</p>
+    </div>
+  </form>

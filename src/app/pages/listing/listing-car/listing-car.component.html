@@ -1,0 +1,39 @@
+<div #background class="modal-background hidden">
+
+  <div #modal class="modal-body">
+    Souhaitez vous supprimer cette voiture: {{ car?.name }} ?
+    <button (click)="deleteCar(true)">Oui</button>
+    <button (click)="closeDeleteModal()">Non</button>
+  </div>
+</div>
+
+
+<div id="container">
+
+  <span id="title">Listing voiture</span>
+
+  <div class="inline">
+    <app-listing-navigation></app-listing-navigation>
+    <button routerLink="detail">Ajouter</button>
+  </div>
+
+  <table>
+    <tr id="headers">
+      <th class="header">Modèle</th>
+      <th class="header">Couleur</th>
+      <th class="header">Actions</th>
+    </tr>
+
+    <tbody>
+      <tr class="row" [ngClass]="i % 2 ? 'grey' : ''" *ngFor="let car of cars; let i = index;">
+        <td class="cell">{{ car.name }}</td>
+        <td class="cell">{{ car.colors  | listColors }}</td>
+        <td class="cell">
+          <span [routerLink]="['detail', car.id]">Editer</span>
+          -
+          <span (click)="openDeleteModal(car)">Supprimer</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

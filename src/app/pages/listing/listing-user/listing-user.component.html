@@ -1,0 +1,27 @@
+<div id="container">
+
+  <span id="title">Listing prospect</span>
+  <app-listing-navigation></app-listing-navigation>
+
+  <table>
+    <tr id="headers">
+      <th class="header">Nom</th>
+      <th class="header">Prénom</th>
+      <th class="header">Date de naissance</th>
+      <th class="header">Permis ?</th>
+      <th class="header">Voiture</th>
+      <th class="header">Couleur</th>
+    </tr>
+
+    <tbody>
+      <tr class="row" [ngClass]="i % 2 ? 'grey' : ''" *ngFor="let user of users; let i = index;">
+        <td class="cell">{{ user.firstname }}</td>
+        <td class="cell">{{ user.lastname }}</td>
+        <td class="cell">{{ user.date_of_birth }}</td>
+        <td class="cell">{{ user.has_driver_licence }}</td>
+        <td class="cell">{{ user.car_id | carName : cars }}</td>
+        <td class="cell">{{ user.color_id | colorName : colors }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
