@@ -18,7 +18,7 @@
         <td class="cell">{{ user.firstname }}</td>
         <td class="cell">{{ user.lastname }}</td>
         <td class="cell">{{ user.date_of_birth }}</td>
-        <td class="cell">{{ user.has_driver_licence }}</td>
+        <td class="cell">{{ user.has_driver_licence ? 'oui' : 'non' }}</td>
         <td class="cell">{{ user.car_id | carName : cars }}</td>
         <td class="cell">{{ user.color_id | colorName : colors }}</td>
       </tr>
