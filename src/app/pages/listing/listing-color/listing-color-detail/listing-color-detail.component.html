@@ -21,7 +21,7 @@
     </div>
 
     <div id="submit">
-      <button type="submit">Valider</button>
+      <button type="submit" [disabled]="!form.dirty || form.invalid">Valider</button>
       <p *ngIf="displayMessage" id="message">La couleur a été {{ isEdition ? 'modifiée' : 'ajoutée' }} avec succès !</p>
     </div>
   </form>

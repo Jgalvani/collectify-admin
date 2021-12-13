@@ -52,7 +52,6 @@ export class ListingCarDetailComponent implements OnDestroy {
             this.car = car;
             this.colors = colors;
             this.createForm();
-
         });
 
     } else {
@@ -118,7 +117,7 @@ export class ListingCarDetailComponent implements OnDestroy {
     const car = {
       name: this.form.value.name,
       colors,
-    } as Car
+    } as Car;
 
     if (this.car) {
       car.id = this.car.id;

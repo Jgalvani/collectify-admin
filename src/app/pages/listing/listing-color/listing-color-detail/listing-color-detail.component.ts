@@ -60,10 +60,10 @@ export class ListingColorDetailComponent implements OnDestroy {
 
   private colorSerializer(): Color {
 
-    const color: Color = {
+    const color = {
       id: this.color?.id,
       ...this.form.value,
-    }
+    } as Color;
 
     return color;
   }
