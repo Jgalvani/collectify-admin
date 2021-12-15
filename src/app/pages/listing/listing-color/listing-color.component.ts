@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, ViewChild } from '@angular/core';
 import { SubscriptionLike } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { Color } from 'src/app/models/color';
@@ -9,7 +9,7 @@ import { ColorService } from 'src/app/services/api/color/color.service';
   templateUrl: './listing-color.component.html',
   styleUrls: ['./listing-color.component.scss']
 })
-export class ListingColorComponent {
+export class ListingColorComponent implements OnDestroy {
 
  // Elementrefs
  @ViewChild('background') background: ElementRef | undefined;

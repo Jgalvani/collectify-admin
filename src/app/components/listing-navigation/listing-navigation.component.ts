@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { SubscriptionLike } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -7,15 +8,18 @@ import { filter } from 'rxjs/operators';
   templateUrl: './listing-navigation.component.html',
   styleUrls: ['./listing-navigation.component.scss']
 })
-export class ListingNavigationComponent {
+export class ListingNavigationComponent implements OnDestroy {
 
   // Booleans
   isCarPage: boolean = false;
   isColorPage: boolean = false;
   isUserPage: boolean = false;
 
+  // Subscriptions
+  routerSubscription: SubscriptionLike;
+
   constructor(private router: Router) {
-    this.router.events
+    this.routerSubscription = this.router.events
       .pipe(
         filter((event: any) => event instanceof NavigationEnd)
       ).subscribe(
@@ -26,6 +30,12 @@ export class ListingNavigationComponent {
         }
       );
    }
+
+   ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
 
   public navigate(name: string): void {
     this.router.navigateByUrl('listing/' + name);
