@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { ListingColorComponent } from './listing-color.component';
 
@@ -8,7 +9,8 @@ describe('ListingColorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListingColorComponent ]
+      declarations: [ ListingColorComponent ],
+      imports: [HttpClientTestingModule],
     })
     .compileComponents();
   });

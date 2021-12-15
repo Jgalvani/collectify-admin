@@ -27,8 +27,7 @@ export class ListingNavigationComponent {
       );
    }
 
-   public navigate(name: string): void {
-     this.router.navigateByUrl('listing/' + name);
-   }
-
+  public navigate(name: string): void {
+    this.router.navigateByUrl('listing/' + name);
+  }
 }
