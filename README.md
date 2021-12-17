@@ -24,11 +24,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Running eslint
 
-Run `npm run lint`to execute linting for every file in "src" folder. 
+Run `npm run lint` to execute linting for every file in "src" folder. 
 
 ## Running prettier
 
-Run `npm run format`to execute prettier for every file in "src" folder.
+Run `npm run format` to execute prettier for every file in "src" folder.
+
+## Install pre-commit hooks
+
+Run `npx mrm@2 lint-staged` to install "husky" and "lint-staged". 
+Configure "prettier", "eslint" and any command you like in "lint-staged" json in "package.json".
+Finally run `npm run prepare` to initialize pre-commit from husky.
 
 ## Further help
 
