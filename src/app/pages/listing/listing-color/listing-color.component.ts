@@ -63,33 +63,26 @@ export class ListingColorComponent implements OnDestroy {
    }
  }
 
- // Modal
- @HostListener('document:click', ['$event.target'])
- onClick(targetElement: ElementRef) {
-   if (!this.modal) return;
+  // Modal
+  public openDeleteModal(color: Color): void {
+    if (!this.background) return; 
+  
+    this.color = color;
+    this.background.nativeElement.classList.remove('hidden');
+    this.modalCanBeClosed = false;
+  }
 
-   const clickedInside = this.modal.nativeElement.contains(targetElement);
-   if (!clickedInside && this.modalCanBeClosed) {
-     this.closeDeleteModal();
+  public closeDeleteModal() {
+    if (!this.background) return;
+
+    // Don't close the modal immediately after its opening
+    if (!this.modalCanBeClosed) {
+     this.modalCanBeClosed = true;
      return;
-   }
+    } 
 
-   this.modalCanBeClosed = true;
- }
-
- public openDeleteModal(color: Color): void {
-   if (!this.background) return;
-
-   this.color = color;
-   this.background.nativeElement.classList.remove('hidden');
-   this.modalCanBeClosed = false;
- }
-
- public closeDeleteModal() {
-   if (!this.background) return;
-
-   this.background.nativeElement.classList.add('hidden');
-   this.color = undefined
-   this.modalCanBeClosed = false;
- }
+    this.background.nativeElement.classList.add('hidden');
+    this.color = undefined
+    this.modalCanBeClosed = false;
+  }
 }

@@ -63,19 +63,6 @@ export class ListingCarComponent implements OnDestroy {
   }
 
   // Modal
-  @HostListener('document:click', ['$event.target'])
-  onClick(targetElement: ElementRef) {
-    if (!this.modal) return;
-
-    const clickedInside = this.modal.nativeElement.contains(targetElement);
-    if (!clickedInside && this.modalCanBeClosed) {
-      this.closeDeleteModal();
-      return;
-    }
-
-    this.modalCanBeClosed = true;
-  }
-
   public openDeleteModal(car: Car): void {
     if (!this.background) return;
 
@@ -86,6 +73,12 @@ export class ListingCarComponent implements OnDestroy {
 
   public closeDeleteModal() {
     if (!this.background) return;
+
+    // Don't close the modal immediately after its opening
+    if (!this.modalCanBeClosed) {
+      this.modalCanBeClosed = true;
+      return;
+    }
 
     this.background.nativeElement.classList.add('hidden');
     this.car = undefined
