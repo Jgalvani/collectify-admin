@@ -1,17 +1,23 @@
-import { Component, OnDestroy } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { combineLatest, SubscriptionLike } from 'rxjs';
-import { mergeMap, switchMap } from 'rxjs/operators';
-import { Car } from 'src/app/models/car';
-import { Color } from 'src/app/models/color';
-import { CarService } from 'src/app/services/api/car/car.service';
-import { ColorService } from 'src/app/services/api/color/color.service';
+import { Component, OnDestroy } from "@angular/core";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
+import { combineLatest, SubscriptionLike } from "rxjs";
+import { mergeMap, switchMap } from "rxjs/operators";
+import { Car } from "src/app/models/car";
+import { Color } from "src/app/models/color";
+import { CarService } from "src/app/services/api/car/car.service";
+import { ColorService } from "src/app/services/api/color/color.service";
 
 @Component({
-  selector: 'app-listing-car-detail',
-  templateUrl: './listing-car-detail.component.html',
-  styleUrls: ['./listing-car-detail.component.scss']
+  selector: "app-listing-car-detail",
+  templateUrl: "./listing-car-detail.component.html",
+  styleUrls: ["./listing-car-detail.component.scss"],
 })
 export class ListingCarDetailComponent implements OnDestroy {
   // Booleans
@@ -23,13 +29,12 @@ export class ListingCarDetailComponent implements OnDestroy {
   public colorsFormArray: FormArray;
 
   // Model based variables
-  public car: Car | undefined;
+  public car: Car | undefined;
   public colors: Color[] = [];
 
   //Subscriptions
   getSubscription: SubscriptionLike | undefined;
   actionSubscription: SubscriptionLike | undefined;
-
 
   constructor(
     private carService: CarService,
@@ -37,7 +42,7 @@ export class ListingCarDetailComponent implements OnDestroy {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) {
-    const car_id = this.route.snapshot.paramMap.get('id');
+    const car_id = this.route.snapshot.paramMap.get("id");
     this.form = this.getForm();
     this.colorsFormArray = this.form.controls.colors as FormArray;
 
@@ -45,26 +50,24 @@ export class ListingCarDetailComponent implements OnDestroy {
       this.isEdition = true;
 
       this.getSubscription = combineLatest([
-          this.carService.getCarFromId(+car_id),
-          this.colorService.getColors(),
-        ]).subscribe(
-          ([car, colors]) => {
-            this.car = car;
-            this.colors = colors;
-            this.createForm();
-        });
-
+        this.carService.getCarFromId(+car_id),
+        this.colorService.getColors(),
+      ]).subscribe(([car, colors]) => {
+        this.car = car;
+        this.colors = colors;
+        this.createForm();
+      });
     } else {
-      this.getSubscription = this.colorService.getColors()
-        .subscribe(
-          (colors: Color[]) => {
-            this.colors = colors;
-            this.createForm();
+      this.getSubscription = this.colorService
+        .getColors()
+        .subscribe((colors: Color[]) => {
+          this.colors = colors;
+          this.createForm();
         });
     }
-   }
+  }
 
-   ngOnDestroy(): void {
+  ngOnDestroy(): void {
     if (this.getSubscription) {
       this.getSubscription.unsubscribe();
     }
@@ -72,8 +75,7 @@ export class ListingCarDetailComponent implements OnDestroy {
     if (this.actionSubscription) {
       this.actionSubscription.unsubscribe();
     }
-   }
-
+  }
 
   private createForm(): void {
     this.form = this.getForm();
@@ -82,16 +84,16 @@ export class ListingCarDetailComponent implements OnDestroy {
   }
 
   private getForm(): FormGroup {
-
-    const name = this.car?.name || '';
-    const colors = this.car?.colors || [];
+    const name = this.car?.name || "";
+    const colors = this.car?.colors || [];
 
     return this.formBuilder.group({
-      name: new FormControl(name, [Validators.required, Validators.maxLength(255)]),
-      colors: new FormArray([], Validators.minLength(1))
+      name: new FormControl(name, [
+        Validators.required,
+        Validators.maxLength(255),
+      ]),
+      colors: new FormArray([], Validators.minLength(1)),
     });
-
-
   }
 
   private addColorCheckboxes() {
@@ -100,19 +102,15 @@ export class ListingCarDetailComponent implements OnDestroy {
     }
 
     const colorsFormArray = this.colorsFormArray;
-    const color_ids = this.car?.colors.map(c => c.id) || [];
+    const color_ids = this.car?.colors.map((c) => c.id) || [];
 
-    this.colors.forEach(c => colorsFormArray
-      .push(
-        new FormControl(
-          color_ids.includes(c.id)
-      )));
+    this.colors.forEach((c) =>
+      colorsFormArray.push(new FormControl(color_ids.includes(c.id)))
+    );
   }
 
   private carSerializer(): Car {
-
-    const colors = this.colors
-      .filter((c, i) => this.form.value.colors[i]);
+    const colors = this.colors.filter((c, i) => this.form.value.colors[i]);
 
     const car = {
       name: this.form.value.name,
@@ -127,27 +125,23 @@ export class ListingCarDetailComponent implements OnDestroy {
   }
 
   public onSubmit() {
-
     const car: Car = this.carSerializer();
 
     if (this.isEdition) {
-
-      this.carService.editCar(car)
-        .subscribe(
-          (car: Car) => this.car = car,
-          (error: Error) => console.log('error:', error),
-          () => this.resetForm()
+      this.carService.editCar(car).subscribe(
+        (car: Car) => (this.car = car),
+        (error: Error) => console.log("error:", error),
+        () => this.resetForm()
       );
 
       return;
     }
 
-    this.carService.addCar(car)
-      .subscribe(
-        (car: Car) =>  this.car = car,
-        error => console.log('error:', error),
-        () => this.resetForm()
-      );
+    this.carService.addCar(car).subscribe(
+      (car: Car) => (this.car = car),
+      (error) => console.log("error:", error),
+      () => this.resetForm()
+    );
   }
 
   resetForm(): void {
@@ -157,9 +151,8 @@ export class ListingCarDetailComponent implements OnDestroy {
 
     this.displayMessage = true;
 
-    setTimeout(()=> this.displayMessage = false, 5000);
+    setTimeout(() => (this.displayMessage = false), 5000);
 
     this.createForm();
   }
-
 }

@@ -1,5 +1,4 @@
 <div id="container">
-
   <span id="title">Listing prospect</span>
   <app-listing-navigation></app-listing-navigation>
 
@@ -14,13 +13,17 @@
     </tr>
 
     <tbody>
-      <tr class="row" [ngClass]="i % 2 ? 'grey' : ''" *ngFor="let user of users; let i = index;">
+      <tr
+        class="row"
+        [ngClass]="i % 2 ? 'grey' : ''"
+        *ngFor="let user of users; let i = index"
+      >
         <td class="cell">{{ user.firstname }}</td>
         <td class="cell">{{ user.lastname }}</td>
         <td class="cell">{{ user.date_of_birth }}</td>
-        <td class="cell">{{ user.has_driver_licence ? 'oui' : 'non' }}</td>
-        <td class="cell">{{ user.car_id | carName : cars }}</td>
-        <td class="cell">{{ user.color_id | colorName : colors }}</td>
+        <td class="cell">{{ user.has_driver_licence ? "oui" : "non" }}</td>
+        <td class="cell">{{ user.car_id | carName: cars }}</td>
+        <td class="cell">{{ user.color_id | colorName: colors }}</td>
       </tr>
     </tbody>
   </table>

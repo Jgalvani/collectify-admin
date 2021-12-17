@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-import { ListingUserComponent } from './listing-user.component';
+import { ListingUserComponent } from "./listing-user.component";
 
-describe('ListingUserComponent', () => {
+describe("ListingUserComponent", () => {
   let component: ListingUserComponent;
   let fixture: ComponentFixture<ListingUserComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListingUserComponent ],
-      imports: [HttpClientTestingModule], 
-    })
-    .compileComponents();
+      declarations: [ListingUserComponent],
+      imports: [HttpClientTestingModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('ListingUserComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

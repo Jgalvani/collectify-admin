@@ -1,18 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
 
-import { ListingCarComponent } from './listing-car.component';
+import { ListingCarComponent } from "./listing-car.component";
 
-describe('ListingCarComponent', () => {
+describe("ListingCarComponent", () => {
   let component: ListingCarComponent;
   let fixture: ComponentFixture<ListingCarComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListingCarComponent ],
+      declarations: [ListingCarComponent],
       imports: [HttpClientTestingModule],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,7 +20,7 @@ describe('ListingCarComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

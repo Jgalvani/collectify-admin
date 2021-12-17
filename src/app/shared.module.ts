@@ -1,18 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // Componentes
-import { ListingNavigationComponent } from 'src/app/components/listing-navigation/listing-navigation.component';
+import { ListingNavigationComponent } from "src/app/components/listing-navigation/listing-navigation.component";
 
 // Pipes
-import { ListColorsPipe } from './pipes/list-colors/list-colors.pipe';
-import { CarNamePipe } from './pipes/car-name/car-name.pipe';
-import { ColorNamePipe } from './pipes/color-name/color-name.pipe';
+import { ListColorsPipe } from "./pipes/list-colors/list-colors.pipe";
+import { CarNamePipe } from "./pipes/car-name/car-name.pipe";
+import { ColorNamePipe } from "./pipes/color-name/color-name.pipe";
 
 // Directives
-import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
-
+import { ClickOutsideDirective } from "./directives/click-outside/click-outside.directive";
 
 @NgModule({
   declarations: [
@@ -20,13 +19,9 @@ import { ClickOutsideDirective } from './directives/click-outside/click-outside.
     ListColorsPipe,
     CarNamePipe,
     ColorNamePipe,
-    ClickOutsideDirective
+    ClickOutsideDirective,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
     ListingNavigationComponent,
     ListColorsPipe,
@@ -34,7 +29,7 @@ import { ClickOutsideDirective } from './directives/click-outside/click-outside.
     ReactiveFormsModule,
     CarNamePipe,
     ColorNamePipe,
-    ClickOutsideDirective
-  ]
+    ClickOutsideDirective,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

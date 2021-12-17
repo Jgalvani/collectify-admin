@@ -1,5 +1,23 @@
 <div id="container">
-  <div class="page" [ngClass]="isUserPage ? 'blue' : ''" (click)="navigate('user')">Fiche prospect</div>
-  <div class="page" [ngClass]="isCarPage ? 'blue' : ''" (click)="navigate('car')">Voiture</div>
-  <div class="page" [ngClass]="isColorPage ? 'blue' : ''" (click)="navigate('color')">Couleur</div>
+  <div
+    class="page"
+    [ngClass]="isUserPage ? 'blue' : ''"
+    (click)="navigate('user')"
+  >
+    Fiche prospect
+  </div>
+  <div
+    class="page"
+    [ngClass]="isCarPage ? 'blue' : ''"
+    (click)="navigate('car')"
+  >
+    Voiture
+  </div>
+  <div
+    class="page"
+    [ngClass]="isColorPage ? 'blue' : ''"
+    (click)="navigate('color')"
+  >
+    Couleur
+  </div>
 </div>

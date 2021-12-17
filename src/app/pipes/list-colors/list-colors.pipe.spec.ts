@@ -1,38 +1,38 @@
-import { Color } from 'src/app/models/color';
-import { ListColorsPipe } from './list-colors.pipe';
+import { Color } from "src/app/models/color";
+import { ListColorsPipe } from "./list-colors.pipe";
 
-describe('ListColorsPipe', () => {
+describe("ListColorsPipe", () => {
   let pipe: ListColorsPipe;
   let colors: Color[];
-  
-  beforeAll( () => {
+
+  beforeAll(() => {
     pipe = new ListColorsPipe();
 
     colors = [
       {
-        name: 'bleu',
+        name: "bleu",
       },
       {
-        name: 'rouge',
+        name: "rouge",
       },
       {
-        name: 'vert',
+        name: "vert",
       },
     ] as Color[];
   });
-  
-  it('create an instance', () => {
+
+  it("create an instance", () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('return a string with color names', () => {
+  it("return a string with color names", () => {
     const colorNames = pipe.transform(colors);
-    expect(colorNames).toBe('bleu - rouge - vert');
+    expect(colorNames).toBe("bleu - rouge - vert");
   });
 
   it('return an empty string if "colors" is empty', () => {
-    const emptyColors: Color[] = []
+    const emptyColors: Color[] = [];
     const colorName = pipe.transform(emptyColors);
-    expect(colorName).toBe('');
+    expect(colorName).toBe("");
   });
 });

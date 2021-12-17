@@ -1,25 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { ReactiveFormsModule } from "@angular/forms";
 
-import { ListingColorDetailComponent } from './listing-color-detail.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ListingColorDetailComponent } from "./listing-color-detail.component";
+import { RouterTestingModule } from "@angular/router/testing";
 
-
-describe('ListingColorDetailComponent', () => {
+describe("ListingColorDetailComponent", () => {
   let component: ListingColorDetailComponent;
   let fixture: ComponentFixture<ListingColorDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListingColorDetailComponent ],
+      declarations: [ListingColorDetailComponent],
       imports: [
         HttpClientTestingModule,
-        ReactiveFormsModule, 
-        RouterTestingModule
-      ], 
-    })
-    .compileComponents();
+        ReactiveFormsModule,
+        RouterTestingModule,
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -28,7 +26,7 @@ describe('ListingColorDetailComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

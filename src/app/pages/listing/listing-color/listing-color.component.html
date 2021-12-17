@@ -1,5 +1,4 @@
 <div #background class="modal-background hidden">
-
   <div #modal class="modal-body" (appClickOutside)="closeDeleteModal()">
     Souhaitez vous supprimer cette couleur: {{ color?.name }} ?
     <button (click)="deleteColor(true)">Oui</button>
@@ -7,9 +6,7 @@
   </div>
 </div>
 
-
 <div id="container">
-
   <span id="title">Listing couleur</span>
 
   <div class="inline">
@@ -24,7 +21,11 @@
     </tr>
 
     <tbody>
-      <tr class="row" [ngClass]="i % 2 ? 'grey' : ''" *ngFor="let color of colors; let i = index;">
+      <tr
+        class="row"
+        [ngClass]="i % 2 ? 'grey' : ''"
+        *ngFor="let color of colors; let i = index"
+      >
         <td class="cell">{{ color.name }}</td>
         <td class="cell">
           <span [routerLink]="['detail', color.id]">Editer</span>

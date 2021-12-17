@@ -1,17 +1,17 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { ListingColorDetailComponent } from './listing-color-detail.component';
+import { ListingColorDetailComponent } from "./listing-color-detail.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: ListingColorDetailComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ListingColorDetailRoutingModule { }
+export class ListingColorDetailRoutingModule {}
