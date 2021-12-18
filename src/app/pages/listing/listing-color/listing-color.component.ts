@@ -1,8 +1,8 @@
 import {
   Component,
   ElementRef,
-  HostListener,
   OnDestroy,
+  TrackByFunction,
   ViewChild,
 } from "@angular/core";
 import { SubscriptionLike } from "rxjs";
@@ -27,11 +27,15 @@ export class ListingColorComponent implements OnDestroy {
   public colors: Color[] = [];
   public color: Color | undefined;
 
+  // Functions
+  public trackByColor: TrackByFunction<Color>;
+
   // Subscriptions
   colorSubscription: SubscriptionLike | undefined;
   deleteSubscription: SubscriptionLike | undefined;
 
   constructor(private colorService: ColorService) {
+    this.trackByColor = this.colorService.trackByColor;
     this.colorSubscription = this.colorService
       .getColors()
       .subscribe((colors: Color[]) => (this.colors = colors));

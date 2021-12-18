@@ -16,7 +16,7 @@
       <tr
         class="row"
         [ngClass]="i % 2 ? 'grey' : ''"
-        *ngFor="let user of users; let i = index"
+        *ngFor="let user of users; let i = index; trackBy: trackByUser"
       >
         <td class="cell">{{ user.firstname }}</td>
         <td class="cell">{{ user.lastname }}</td>

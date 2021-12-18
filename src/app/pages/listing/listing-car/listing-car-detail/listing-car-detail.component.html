@@ -30,7 +30,11 @@
       <div class="control checkboxes">
         <label
           formArrayName="colors"
-          *ngFor="let color of colorsFormArray.controls; let i = index"
+          *ngFor="
+            let color of colorsFormArray.controls;
+            let i = index;
+            trackBy: trackByColorForm
+          "
         >
           <input type="checkbox" [formControlName]="i" />
           {{ colors[i].name }}

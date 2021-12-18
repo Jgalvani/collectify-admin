@@ -20,6 +20,11 @@ export class CarService {
 
   constructor(private http: HttpClient) {}
 
+  // TrackBy
+  public trackByCar(index: number, car: Car): number {
+    return car.id;
+  }
+
   // GET
   public getCars(): Observable<Car[]> {
     return this.http.get<Car[]>(this.baseUrl, this.httpOptions);

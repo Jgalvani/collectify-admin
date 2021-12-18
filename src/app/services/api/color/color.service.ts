@@ -20,6 +20,11 @@ export class ColorService {
 
   constructor(private http: HttpClient) {}
 
+  // TrackBy
+  public trackByColor(index: number, color: Color): number {
+    return color.id;
+  }
+
   // GET
   public getColors(): Observable<Color[]> {
     return this.http.get<Color[]>(this.baseUrl, this.httpOptions);

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, TrackByFunction } from "@angular/core";
 import { combineLatest } from "rxjs";
 import { Car } from "src/app/models/car";
 import { Color } from "src/app/models/color";
@@ -19,11 +19,15 @@ export class ListingUserComponent {
   colors: Color[] = [];
   users: User[] = [];
 
+  // Functions
+  public trackByUser: TrackByFunction<User>;
+
   constructor(
     private carService: CarService,
     private colorService: ColorService,
     private userService: UserService
   ) {
+    this.trackByUser = this.userService.trackByUser;
     combineLatest([
       this.userService.getUsers(),
       this.carService.getCars(),

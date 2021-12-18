@@ -20,6 +20,11 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  // TrackBy
+  public trackByUser(index: number, user: User): number {
+    return user.id;
+  }
+
   // GET
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl, this.httpOptions);

@@ -1,8 +1,8 @@
 import {
   Component,
   ElementRef,
-  HostListener,
   OnDestroy,
+  TrackByFunction,
   ViewChild,
 } from "@angular/core";
 import { SubscriptionLike } from "rxjs";
@@ -27,11 +27,15 @@ export class ListingCarComponent implements OnDestroy {
   public cars: Car[] = [];
   public car: Car | undefined;
 
+  // Functions
+  public trackByCar: TrackByFunction<Car>;
+
   // Subscriptions
   carSubscription: SubscriptionLike | undefined;
   deleteSubscription: SubscriptionLike | undefined;
 
   constructor(private carService: CarService) {
+    this.trackByCar = this.carService.trackByCar;
     this.carSubscription = this.carService
       .getCars()
       .subscribe((cars: Car[]) => (this.cars = cars));

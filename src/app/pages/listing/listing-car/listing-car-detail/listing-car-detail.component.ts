@@ -1,9 +1,11 @@
 import { Component, OnDestroy } from "@angular/core";
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
+  ValidatorFn,
   Validators,
 } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
@@ -77,6 +79,7 @@ export class ListingCarDetailComponent implements OnDestroy {
     }
   }
 
+  // Form
   private createForm(): void {
     this.form = this.getForm();
     this.colorsFormArray = this.form.controls.colors as FormArray;
@@ -92,7 +95,7 @@ export class ListingCarDetailComponent implements OnDestroy {
         Validators.required,
         Validators.maxLength(255),
       ]),
-      colors: new FormArray([], Validators.minLength(1)),
+      colors: new FormArray([], this.ValidateArrayMinimumLength(1)),
     });
   }
 
@@ -109,6 +112,43 @@ export class ListingCarDetailComponent implements OnDestroy {
     );
   }
 
+  resetForm(): void {
+    if (!this.isEdition) {
+      this.car = undefined;
+    }
+
+    this.displayMessage = true;
+
+    setTimeout(() => (this.displayMessage = false), 5000);
+
+    this.createForm();
+  }
+
+  // Custom validators
+  private ValidateArrayMinimumLength(value: number): ValidatorFn {
+    // ValidatorFn only accepts AbstractControl as parameter.
+    return (parameter: AbstractControl): { [key: string]: any } | null => {
+      if (!(parameter instanceof FormArray)) {
+        return { error: "Object is not instance of FormArray." };
+      }
+
+      const formArray = parameter as FormArray;
+
+      const validation =
+        formArray.controls.filter((c) => c.value).length >= value
+          ? null
+          : { error: `Minimum length is ${value}.` };
+
+      return validation;
+    };
+  }
+
+  // TrackBy
+  public trackByColorForm(index: number, colorForm: AbstractControl): number {
+    return index;
+  }
+
+  // Submit
   private carSerializer(): Car {
     const colors = this.colors.filter((c, i) => this.form.value.colors[i]);
 
@@ -142,17 +182,5 @@ export class ListingCarDetailComponent implements OnDestroy {
       (error) => console.log("error:", error),
       () => this.resetForm()
     );
-  }
-
-  resetForm(): void {
-    if (!this.isEdition) {
-      this.car = undefined;
-    }
-
-    this.displayMessage = true;
-
-    setTimeout(() => (this.displayMessage = false), 5000);
-
-    this.createForm();
   }
 }

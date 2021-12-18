@@ -24,7 +24,7 @@
       <tr
         class="row"
         [ngClass]="i % 2 ? 'grey' : ''"
-        *ngFor="let color of colors; let i = index"
+        *ngFor="let color of colors; let i = index; trackBy: trackByColor"
       >
         <td class="cell">{{ color.name }}</td>
         <td class="cell">
